@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather app</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
+</head>
+<body class="d-flex h-100 text-center text-white bg-dark">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="mb-auto">
+    <div>
+      <nav class="nav nav-masthead justify-content-center float-md-end">
+        <a class="nav-link active" aria-current="page" href="#">Main Page</a>
+        <a class="nav-link" href="#">Information</a>
+        <a class="nav-link" href="#">Documentation</a>
+      </nav>
+    </div>
+  </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-4 offset-1">
+                <h1>Weather in your city</h1>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ form.name }}
+                    <input type="submit" name="send" value="Find out" class="mt-2 btn btn-danger">
+                </form>
+            </div>
+            <div class="col-4 offset-2">
+                <h1>Information</h1>
+
+                {% for info in all_info %}
+                <div class="alert alert-info">
+                    <div class="row">
+                        <div class="col-9">
+                            <b>City:</b> {{ info.city }} <br>
+                            <b>Temperature:</b> {{ info.temp }}<sup>0</sup> <br>
+                        </div>
+                        <div class="col-2 offset-1">
+                            <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Weather photo">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
