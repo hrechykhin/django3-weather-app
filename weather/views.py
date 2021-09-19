@@ -1,5 +1,5 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import City
 from .forms import CityForm
 
@@ -30,3 +30,9 @@ def index(request):
     context = {'all_info': all_cities, 'form':form}
 
     return render(request,'weather/index.html',context)
+
+def deletecity(request):
+    cities = City.objects.all()
+    if request.method == 'POST':
+        cities.delete()
+        return redirect('home')

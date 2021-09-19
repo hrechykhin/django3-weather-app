@@ -42,6 +42,11 @@
                     </div>
                 </div>
                 {% endfor %}
+                <form action="{% url 'deletecity' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" name="send" value="Delete All" class="mt-2 btn btn-danger">
+                </form>
+
             </div>
         </div>
     </div>
